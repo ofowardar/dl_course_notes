@@ -1,2 +1,116 @@
 Part 1
 -Artificial Neural Networks- 
+
+The Neuron(Nöron): Hücre Gövdesi, Dentritler ve aksondan oluşur. Dentritler sinyal alıcı ve aksonlar ise sinyal verici gibidirler. İletim dentritten aksona doğru gerçekleşir ve aksondan başka bir nöronun dentritine iletilir.
+
+Nöronları nasıl bilgisayarda yeniden oluştururuz ? 
+
+x>---|O---->y
+x>---|O---->y           Nöronlar diğer nöronlardan input alırlar ve output çıkarırlar.
+x>---|O---->y           Nöronun sinyal aldığı kısım giriş katmanı olarak adlandırılır.
+X: Bağımsız değişkenler
+y: bağımlı değişkenler
+
+inputları ölçeklendirmek çok daha iyi sonuçlar verecektir.
+
+
+Output value yani nöronun çıktısı ne olabilir?
+- Continuous Value yani sürekli değerler fiyat gibi
+- Binary Values Evet Hayır şeklinde değerler
+- Categorical Value bu durumda kategorik verilerde çıktı birden çok olur ve kategori oradan elde edilir.
+
+
+! Nörona girdi olarak gönderilen girdiler sadece 1 satır yani gözleme aittir ve output value da o bir satıra hitap eder.
+
+Yani işlemler hep tek satır içindir.
+
+Girdileri nörona ulaştıran kısımlara sinapslar denir ve bu sinapslara ağırlıklar atanmıştır. Ağırlıklar nöronlar için çok önemlidir çünkü nöronun nasıl öğreneceğini belirler.
+
+
+Peki sinyaller nörona ulaşır ve ne olur ? 
+- Tüm değerleri toplar yani ağırlıkların toplamını alır.
+WiXi toplamını alır.
+
+- Ve bir aktivasyon fonksiyonu uygular.
+
+
+- The Activation Function - 
+
+Aktivasyon fonksiyonundan sonra nöron çıktıyı başka bir nörona iletir. Aktviasyon Fonksiyonu uygulanırken neler olur ? 
+
+Fonksiyon tipleri:
+
+- Threshold Function 1 if x >= 0 veya 0 if x < 0 şeklindedir.
+
+- Sigmoid Function  1/1+e üzeri -x (Logistic Regressionda kullanılır.)
+
+- Rectifier Func ( En popülerlerden birisi) max(x,0)
+
+- Hyperbolic Tangent Function 1- ile 1 arası 
+
+Soru: Girdilerimiz ikili ise hangi activ func kullanılır? Thresold Func,sigmoid.
+
+
+- How do NNs Work? -
+
+Yapay Sinir Ağları Nasıl Çalışırlar?
+
+Bir mülk tahmin için düşünelim
+
+4 parametremiz olsun Alan yatak odası şehre uzaklık ve yaşı bunlar girdi katmanımız.
+
+ve çıktı katmanımız var bu da fiyatı olucaktır.
+
+Girdiler sinapslar ile ağırlıklar hesaplanarak fiyat oluşacaktır. 
+
+Bir makine öğrenimi algoritması ile de gerçekleştirebileceğimiz bu işlemde makine öğrenimi kullanırsak hidden layer olmayacaktır ancak deep learning burada bize bu gücü sağlıyor Hidden Layer.
+
+Gizli katmandaki nöronlar girdilerin hepsini almak zorunda değildir her bir nöron farklı kombinasyondaki veya tek girdileri alarak işlerler aslında hidden layerin gücü de buradan gelmektedir hidden layerdaki nöronlar birleşerek output yani fiyatı karalaştırırlar ve tüm ihtimalleri girdileri özelce işleyerek en doğru fiyatı bulmaya çalışırlar. Makine öğrenmesinde ise makine gördüğü patternleri uygulayarak direkt bulur.
+
+
+
+- How do NNs Learn? - 
+
+Yapay Sinir Ağları nasıl öğrenirler ? 
+
+Yapay sinir ağlarına kendi girdilerimizi ve istediğimiz çıktıları veriyoruz ancak unutmamamız gereken şey daha sonra kendi kendine öğrenebilen bir yapı oluşturmamızdır.
+
+yani aslında kural koymaktansa bu böyledir şu şöyledir demektense siz bunlar bu şunlar şu derseniz neden o şekilde olduklarını iyice kendisi öğrenir yani bizler sadece mimariyi kurarsak kendi öğrenebileceği şekle girer.
+
+y gerçek değeri ^y ise çıktı değerini yani tahmin edilen değeri ifade eder.
+
+gerçek değer ile tahmin edilen değer arasında maliyet fonksiyonu kullanılır.
+hata payımızı ve maliyeti optimize etmeye yarar.
+
+FeedForward NN : Mesela satılar girdiler oluyor ve girdiler giriliyor ağırlıklar hesaplanıyor daha sonra aktivasyon fonksiyonu ile çıktı tahmin ediliyor ve maliyet fonksiyonu hesaplanıyor ve bu maliyet fonksiyonu ile geri yayılım yapılarak nöronun ağırlıkları güncelleniyor ve değerler yakılnaşana kadar kadar ağırlık güncelleme devam ediyor.
+
+Epoc : Modelin tüm eğitim verisi üzerinden bir kez ileri ve geri geçmesi anlamına gelir. 
+
+Diyelim ki elinde 1000 satırlık bir eğitim verisi var.
+
+Modelin batch size = 100 (yani her adımda 100 veri işleniyor).
+
+Bu durumda:
+
+1 epoch = 10 batch’lik eğitim demektir.
+
+Model 1000 veriyi bir kez işleyince 1 epoch tamamlanmış olur.
+
+
+
+
+-- Gradient Descent --
+
+Gradient İnişi:
+ 
+Maliyet Fonksiyonunu optimize etmek için binlerce ağırlık deneyip de en uygununu bulmak bir yöntem ancak bu bizlere "Curse of Dimensionality" sorunu ile baş başa bırakacaktır bu da boyutsallık laneti olarak adlandırılan bir problemdir.
+
+Boyut arttıkça, veri uzayı öyle genişler ki, veriler seyrekleşir, anlamlı örüntüler bulmak çok zorlaşır ve model performansı düşer. İşte bu yüzden brute force denemek bizler için riskli ve zaman kaybıdır hatta imkansızdır.
+
+Bu durumları göze aldığımızda Gradient Descent i bu yüzden kullanıyoruz.
+
+Grafikte alınan noktanın açısına bakarak türevi hesaplanarak bulunur. açıya göre aşağı ve yukarı gitmesi gerektiğini anlar eğim ile
+
+Eğim > 0 aşağı gitmesi gerekir 
+Eğit < 0 ise yukarı gitmeli  bu şekilde en iyi cost func bulunmuş olur.
+
