@@ -114,3 +114,41 @@ Grafikte alınan noktanın açısına bakarak türevi hesaplanarak bulunur. aç�
 Eğim > 0 aşağı gitmesi gerekir 
 Eğit < 0 ise yukarı gitmeli  bu şekilde en iyi cost func bulunmuş olur.
 
+-- Stochastic Gradient Descent -- 
+
+Stokastik Gradient İnişi:
+
+ Gradient inişindeki handikap aslında maliyet fonksiyonunun dış bükey olmak zorunda olmasıdır. yani 1 tane global minimum vardır.
+
+ Peki ya şeklimiz dengesiz inişli çıkışlı ise local bir minimumu global bir minimummuş gibi bir değer yakalar ve orada kalır.
+
+ Stokastik Gradient İnişi ise dış bükey ollmasını gerektirmediği iddia edildi.
+
+Gradient inişinde tüm değerler çalıştırılıp daha sonra ^Y ile Y karşılaştırılıp maliyet fonksiyonu gözlemlenip de ağırlıklar güncellenirken.
+
+Stokastik Gradient İnişinde ise tüm satırlar tek tek alınır satır hesaplanır maliyet fonksiyonu için ağırlık düşürülür bu işlem tüm satırlar için gerçekleşir.
+
+stokastik g.i daha hızlıdır çünkü tüm veriyi yükleyip de bakmak zorunda değil tek tek satır sonunda işler.
+
+ve Batch Gradient Descent deterministiktir her çalıştırılmasında aynı sonucu alırız iterasyonlar aynıdır. Ancak Stokastikde ise nondeterministik olduğu için iterasyonlar farklıdır.
+
+ayrıca mini Gradient inişi diye bir ara algoritma vardır satırları gruplar şeklinde alarak karma bir işlem yapar 5 li 10 lu 
+
+
+
+-- Backpropagation -- 
+
+Geri yayılım:
+
+Hatalar ağ boyunca ters yayılırlar ve ağırlıkları ayarlamamızı sağlarlar. Tüm ağırlıklar aynı anda ayarlanır. bu en büyük avantajıdır.
+
+Adım 1: Rastgele sıfıra yakın ancak 0 olmayan küçük sayılarla ağırlıkları başlattık
+
+Adım 2: Girdi için satırları alın ve giriş düğümlerine yerleştirin.
+
+Adım 3: Tahmin edilen sonuç ile gerçek sonucu karşılaştır
+
+Adım 4: Hata payını ölçün
+
+Adım 5: Geri yayılım yapın.
+
