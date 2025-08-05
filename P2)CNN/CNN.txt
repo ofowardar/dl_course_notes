@@ -1,4 +1,64 @@
 -- Convolutional Neural Networks -- 
 
 
- 
+ Bir input imageimiz var cnnden geçiyor ve image classification ortaya çıkıyor.
+
+ Siyah beyaz resimler 2D bir dizidir ve 0 ile 255 arasında değişir pixellerin değerleri.
+
+ Renkli resimler 3 boyutlu dizilerdir RGB ile çalışırlar ve renklerin yoğunlukları vardır.
+
+ Resim işleme adımları:
+
+ 1- Convolution
+ 2- Max Pooling
+ 3- Flattenning
+ 4- Full Connection
+
+
+ - Step 1 (Convolution) - 
+
+ Bir özellik dedektörümüz vardır 3e3 matris olur genelde input image 0 ve 1 lere çevrildikten sonra o özellik dedektörü inputun üstüne konularak değerler çarpılır ve toplanır daha sonra bunun sonucunda elimizde bir feature map ortaya çıkar.Hem bu sayede görüntüyü küçültebiliriz. Bu sayede işlemek daha kolay hale gelir ve hızlı olur.  
+
+ Convolution işleminde input küçültülüyor peki bilgi kaybı oluyor mu ?
+
+Evet bazı bilgiler kayboluyor aslında ancak özellik haritası üzerindeki en büyük sayılar aslında belirleyici eşleşen noktalar oluyorlar bu yüzden ayırt edici oluyor.
+
+Sadece tek bir özellik haritası oluşturulmuyor farklı filtrelerle farklı haritalar oluşturuluyor ve belirli ayırt edici özellikleri arıyor. Belirli türler veya belirli kategoriler için hangi özelliklerin önemli olduğunu toplamaya çalışıyor.
+
+
+1. Adıma ek bir adım küçük bir adım:
+
+ReLU Layer: elimizde bir giriş katmanı ve Convolutional katmanı var ve bunun üzerine Doğrultucu fonksiyonunu uygulayacağız. Bu fonksiyonu uygulama sebebimiz ise görüntümüzde veya sinir ağımızda doğrusal olmamayı arttırmamızdır. ReLU bir filtre gibi davranır ve doğrusallığı bozar. 
+
+- Step 2 - Max Pooling
+
+Havuzlama nedir ne neden ihtiyacımız var.
+
+Fotoğrafın farklı açılarda ve pozisyonlarda tanınmasını sağlamaya yarar.
+mesela bir çita farklı fotoğraflarda farklı taraflara bakıyorsa tüm o fotoğraflarda aynı nesneyi doğru şekilde tanımamızı sağlamasıdır. Görüntünün hangi tarafa baktığını hangi pozisyonda olduğunu önemsemeden nesneyi doğru algılamalıdır.
+
+Hesaplarken özellik haritamızdan 2x2 matrisler alarak maksimum değerleri kaydederiz. Buradaki maksimum değerler aslında bir özelliğe en yakın değerleri temsil ederler. ve bu bilgileri bir havuzda toparlarız bunun avantajı da özelliğe ayırt edici bir şeye sahip olmayan kısımların %75 inden kurtuluyor olmamızdır yani boş pikselleri eliyoruz gibi bir şey.
+Ayrıca bozulmaları da hesaba katarak önemli özelliklerin kaybolmasını önlüyoruz. Ve boyut burada yine düşüyor işleme konusunda da büyük avantaj sağlıyor. 
+
+
+Şu ana kadar:
+
+Input Image -----> Convolutional Layer -----> Pooling Layer yaptık.
+
+
+- Step - 4 - Flattening
+
+Havuzlanmış feature mapi düzleştirerek satırları dümdüz bir hale getirerek yapay sinir ağlarına girdi haline getiriyoruz.
+
+Yani:
+
+Input Image ---> Convolutional layer ----> Pooling Layer ----> Input layer of a future ANN(Flattening)
+
+
+
+
+
+- Step 4 - Full Connection
+
+
+
